@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقويم الأول | أخلاقيات مهنة التعليم</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ╔══════════════════════════════╗
+     ║  SCREEN 1 — STUDENT INFO    ║
+     ╚══════════════════════════════╝ -->
+<div id="s-info" class="scr on">
+  <div class="bar">
+    <div class="bar-brand">
+      <div class="bar-dot"></div>
+      المدرسة العليا للتربية والتكوين
+    </div>
+    <div class="bar-right">
+      <a href="../index.html" class="btn btn-ghost btn-sm">🏠 الرئيسية</a>
+      <button class="btn btn-ghost btn-sm" onclick="goTo('s-pass')">🔐 الأستاذ</button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eyebrow" id="hero-eyebrow">التقويم الأول</div>
+    <h1 id="hero-title">أخلاقيات مهنة التعليم</h1>
+    <p>أجب على الأسئلة واحصل على نتيجتك وتصحيحها فوراً</p>
+    <div class="hero-pills">
+      <span class="hero-pill">📝 20 سؤالاً</span>
+      <span class="hero-pill">⚡ تصحيح فوري</span>
+      <span class="hero-pill">🔀 4 أنواع أسئلة</span>
+      <span class="hero-pill">☁️ يُرسَل لـ Google Sheets</span>
+    </div>
+  </div>
+
+  <div class="form-wrap">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-head-icon">📋</div>
+        <div>
+          <h2>البيانات الشخصية</h2>
+          <p>يُرجى تعبئة جميع الحقول بدقة قبل بدء الاختبار</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="fgrid">
+          <div class="fgroup">
+            <label class="flabel"><span class="flabel-icon">👤</span>الاسم الشخصي</label>
+            <input class="finput" id="fi-first" type="text" placeholder="محمد">
+          </div>
+          <div class="fgroup">
+            <label class="flabel"><span class="flabel-icon">👤</span>النسب (اسم العائلة)</label>
+            <input class="finput" id="fi-last" type="text" placeholder="العمراني">
+          </div>
+          <div class="fgroup">
+            <label class="flabel"><span class="flabel-icon">🎓</span>رقم مسار</label>
+            <input class="finput" id="fi-masar" type="text" placeholder="12345678">
+          </div>
+          <div class="fgroup">
+            <label class="flabel"><span class="flabel-icon">📱</span>رقم الهاتف</label>
+            <input class="finput" id="fi-phone" type="tel" placeholder="06XXXXXXXX">
+          </div>
+          <div class="fgroup span2">
+            <label class="flabel"><span class="flabel-icon">📧</span>البريد الإلكتروني</label>
+            <input class="finput" id="fi-email" type="email" placeholder="example@enset.ac.ma">
+          </div>
+        </div>
+
+        <div class="info-note">
+          ☁️ إجاباتك ستُرسَل مباشرة إلى Google Sheets الخاص بالأستاذ وتُحفَظ تلقائياً.<br>
+          الاختبار: <strong>8 MCQ</strong> + <strong>5 صح/خطأ</strong> +
+          <strong>2 وصل مفاهيم</strong> + <strong>3 أسئلة مفتوحة</strong>.
+          التصحيح الفوري يظهر بعد كل إجابة موضوعية.
+        </div>
+
+        <button class="btn btn-primary btn-xl" onclick="startQuiz()">
+          🚀 ابدأ الاختبار الآن
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗
+     ║  SCREEN 2 — QUIZ            ║
+     ╚══════════════════════════════╝ -->
+<div id="s-quiz" class="scr">
+  <div class="bar">
+    <div class="bar-brand">
+      <div class="bar-dot"></div>
+      <span id="bar-name">الطالب</span>
+    </div>
+    <div class="bar-right">
+      <span id="bar-score" style="font-size:.87rem;font-weight:800;color:var(--teal2)"></span>
+    </div>
+  </div>
+
+  <div class="quiz-wrap">
+    <div class="prog-row">
+      <div class="prog-track">
+        <div class="prog-fill" id="prog" style="width:5%"></div>
+      </div>
+      <div class="prog-info">
+        <div class="prog-frac" id="pfrac">1 / 20</div>
+        <div class="prog-pct"  id="ppct">5%</div>
+      </div>
+    </div>
+
+    <div id="sec-pill"></div>
+    <div id="qwrap"></div>
+
+    <div class="qnav">
+      <button class="btn btn-outline btn-md" id="btn-prev" onclick="prevQ()" style="display:none">→ السابق</button>
+      <button class="btn btn-primary btn-md" id="btn-next" onclick="nextQ()" style="flex:1">التالي ←</button>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗
+     ║  SCREEN 3 — RESULTS         ║
+     ╚══════════════════════════════╝ -->
+<div id="s-result" class="scr">
+  <div class="bar">
+    <div class="bar-brand"><div class="bar-dot"></div>نتائج التقويم</div>
+    <div class="bar-right">
+      <a href="../index.html" class="btn btn-ghost btn-sm">🏠 الرئيسية</a>
+    </div>
+  </div>
+
+  <div class="result-wrap">
+    <div class="result-hero">
+      <div class="score-ring" id="sring">
+        <div class="score-big"   id="rnum">0</div>
+        <div class="score-denom" id="rden">/ 17</div>
+      </div>
+      <div class="res-name" id="rname"></div>
+      <div class="res-msg"  id="rmsg"></div>
+    </div>
+
+    <div class="stats4">
+      <div class="stile">
+        <div class="sn" id="st-c" style="color:var(--sage)">0</div>
+        <div class="sl">✅ صحيحة</div>
+      </div>
+      <div class="stile r">
+        <div class="sn" id="st-w" style="color:var(--rose)">0</div>
+        <div class="sl">❌ خاطئة</div>
+      </div>
+      <div class="stile g">
+        <div class="sn" style="color:var(--gold)">3</div>
+        <div class="sl">✍ مفتوحة</div>
+      </div>
+      <div class="stile p">
+        <div class="sn" id="st-t" style="color:var(--plum)">—</div>
+        <div class="sl">⏱ دقيقة</div>
+      </div>
+    </div>
+
+    <div class="res-note">
+      ☁️ تم إرسال إجاباتك إلى Google Sheets الخاص بالأستاذ.<br>
+      <strong style="color:var(--plum)">الأسئلة المفتوحة (3) تُصحَّح يدوياً ويُضاف نقاطها لاحقاً.</strong>
+    </div>
+
+    <div class="res-btns">
+      <button class="btn btn-outline btn-lg" onclick="resetApp()">🔄 محاولة جديدة</button>
+      <button class="btn btn-gold btn-lg" onclick="goTo('s-pass')">📊 لوحة التحكم</button>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗
+     ║  SCREEN 4 — PASSWORD        ║
+     ╚══════════════════════════════╝ -->
+<div id="s-pass" class="scr">
+  <div class="bar">
+    <div class="bar-brand"><div class="bar-dot"></div>منطقة الأستاذ</div>
+    <button class="btn btn-ghost btn-sm" onclick="goTo('s-info')">← رجوع</button>
+  </div>
+  <div class="pass-wrap">
+    <div class="pass-card">
+      <div class="pass-emoji">🔐</div>
+      <h2>لوحة تحكم الأستاذ</h2>
+      <p>أدخل كلمة المرور للوصول إلى نتائج الطلبة وإجاباتهم</p>
+      <input class="pass-inp" id="pass-inp" type="password" placeholder="••••••••"
+             onkeydown="if(event.key==='Enter')tryLogin()">
+      <div class="pass-hint">كلمة المرور محددة في ملف <code>questions.js</code></div>
+      <button class="btn btn-primary btn-xl" onclick="tryLogin()">دخول</button>
+      <br><br>
+      <button class="btn btn-outline btn-md" onclick="goTo('s-info')">← العودة للاختبار</button>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗
+     ║  SCREEN 5 — DASHBOARD       ║
+     ╚══════════════════════════════╝ -->
+<div id="s-dash" class="scr">
+  <div class="dash-bar">
+    <div>
+      <h1>📊 لوحة تحكم — التقويم الأول</h1>
+      <p>أخلاقيات مهنة التعليم · البيانات المحفوظة محلياً</p>
+    </div>
+    <div class="dash-acts">
+      <button class="btn btn-gold btn-sm"   onclick="doExport()">⬇ CSV</button>
+      <button class="btn btn-danger btn-sm" onclick="doClear()">🗑 مسح</button>
+      <button class="btn btn-ghost btn-sm"  onclick="goTo('s-info')">← خروج</button>
+    </div>
+  </div>
+
+  <div class="dash-body">
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-ic">👥</div>
+        <div><div class="kpi-n" id="kn-total">0</div><div class="kpi-l">إجمالي الطلبة</div></div>
+      </div>
+      <div class="kpi kg">
+        <div class="kpi-ic">📈</div>
+        <div><div class="kpi-n" id="kn-avg">—</div><div class="kpi-l">متوسط النقطة</div></div>
+      </div>
+      <div class="kpi ks">
+        <div class="kpi-ic">✅</div>
+        <div><div class="kpi-n" id="kn-pass">0</div><div class="kpi-l">تجاوزوا 50%</div></div>
+      </div>
+      <div class="kpi kp">
+        <div class="kpi-ic">🏆</div>
+        <div><div class="kpi-n" id="kn-best">—</div><div class="kpi-l">أعلى نقطة</div></div>
+      </div>
+    </div>
+
+    <div class="dtabs">
+      <button class="dtab on" onclick="showTab('t-res',this)">📋 النتائج</button>
+      <button class="dtab"    onclick="showTab('t-open',this)">✍ الأسئلة المفتوحة</button>
+    </div>
+
+    <div id="t-res">
+      <div class="tbl-card">
+        <div class="tbl-hd">
+          <h3>قائمة نتائج الطلبة</h3>
+          <span id="tcount">0 طالب</span>
+        </div>
+        <div style="overflow-x:auto">
+          <table>
+            <thead><tr>
+              <th>#</th><th>الاسم الكامل</th><th>رقم مسار</th>
+              <th>الهاتف</th><th>البريد</th>
+              <th>النقطة</th><th>النسبة</th>
+              <th>الوقت</th><th>التاريخ</th>
+            </tr></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-open" style="display:none">
+      <div class="tbl-card">
+        <div class="tbl-hd">
+          <h3>✍ الأسئلة المفتوحة — للتصحيح اليدوي</h3>
+          <span>لا تدخل في النقطة التلقائية</span>
+        </div>
+        <div class="open-blocks" id="open-blocks"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SENDING OVERLAY ─────────────────────────────── -->
+<div class="sending-overlay" id="send-overlay">
+  <div class="sending-box">
+    <div id="send-spinner" class="sending-spinner"></div>
+    <div id="send-ok" class="send-ok">
+      <div class="ok-icon">✅</div>
+    </div>
+    <h3>جارٍ إرسال الإجابات</h3>
+    <p>يتم حفظ بياناتك في Google Sheets…</p>
+  </div>
+</div>
+
+<!-- ── TOAST ──────────────────────────────────────── -->
+<div id="toast"></div>
+
+<!-- ── SCRIPTS (order matters!) ───────────────────── -->
+<script src="questions.js"></script>
+<script src="script.js"></script>
+
+<!-- set dynamic titles from config -->
+<script>
+  document.title = `${EXAM_CONFIG.title} | ${EXAM_CONFIG.subject}`;
+  document.getElementById('hero-eyebrow').textContent = EXAM_CONFIG.title;
+  document.getElementById('hero-title').textContent   = EXAM_CONFIG.subject;
+</script>
+
+</body>
+</html>

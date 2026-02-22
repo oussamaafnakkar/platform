@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقويمات المستمرة | المدرسة العليا للتربية والتكوين</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0D2B3E; --navy2:#163D55; --teal:#0B8FA0; --teal2:#0DC5DC;
+  --gold:#C47B0B; --gold2:#F0A500; --sage:#2E7D5A;
+  --ink:#0E1E2B; --gray:#637585; --line:#DCE8ED; --paper:#F4F8FA; --white:#fff;
+  --sh:0 4px 24px rgba(13,43,62,.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Tajawal',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+
+/* NAV */
+nav{
+  background:var(--navy);height:58px;padding:0 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 2px 16px rgba(0,0,0,.2);position:sticky;top:0;z-index:100;
+}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--teal2);box-shadow:0 0 8px var(--teal2)}
+.nav-year{font-size:.75rem;color:rgba(255,255,255,.45);font-family:'Cairo',sans-serif}
+
+/* HERO */
+.hero{
+  background:linear-gradient(148deg,var(--navy) 0%,var(--navy2) 55%,#0E3D5C 100%);
+  padding:64px 20px 56px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 50%,rgba(11,143,160,.2) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 45% at 85% 25%,rgba(196,123,11,.14) 0%,transparent 60%);
+}
+.hero-badge{
+  position:relative;z-index:1;display:inline-block;
+  background:rgba(13,197,220,.12);border:1px solid rgba(13,197,220,.3);
+  color:var(--teal2);font-size:.76rem;font-weight:800;letter-spacing:.5px;
+  padding:5px 16px;border-radius:30px;margin-bottom:20px;
+}
+.hero h1{
+  position:relative;z-index:1;
+  font-family:'Cairo',sans-serif;font-size:clamp(1.6rem,5vw,2.6rem);
+  font-weight:900;color:#fff;line-height:1.3;margin-bottom:10px;
+}
+.hero p{position:relative;z-index:1;color:rgba(255,255,255,.6);font-size:.95rem;max-width:520px;margin:0 auto}
+
+/* GRID */
+.grid-wrap{max-width:1060px;margin:0 auto;padding:40px 20px 64px}
+.section-label{
+  font-family:'Cairo',sans-serif;font-size:1rem;font-weight:800;
+  color:var(--navy);margin-bottom:20px;display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:2px;background:var(--line);border-radius:2px}
+
+.exams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+
+/* EXAM CARD */
+.exam-card{
+  background:var(--white);border-radius:18px;
+  box-shadow:var(--sh);overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+  text-decoration:none;display:block;
+  border:1px solid var(--line);
+}
+.exam-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(13,43,62,.18)}
+.exam-card-top{
+  padding:24px 22px 18px;
+  position:relative;
+}
+.exam-card-top::before{
+  content:'';position:absolute;top:0;right:0;left:0;height:4px;
+  background:linear-gradient(90deg,var(--teal),var(--teal2));
+}
+.exam-num{
+  display:inline-block;
+  background:var(--navy);color:#fff;
+  font-family:'Cairo',sans-serif;font-size:.72rem;font-weight:800;
+  padding:3px 12px;border-radius:20px;margin-bottom:12px;letter-spacing:.4px;
+}
+.exam-card-top h2{
+  font-family:'Cairo',sans-serif;font-size:1.05rem;font-weight:800;
+  color:var(--navy);line-height:1.45;margin-bottom:7px;
+}
+.exam-card-top p{font-size:.82rem;color:var(--gray);line-height:1.6}
+
+.exam-card-meta{
+  padding:14px 22px;background:var(--paper);
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.meta-chips{display:flex;gap:7px;flex-wrap:wrap}
+.meta-chip{
+  font-size:.72rem;font-weight:700;padding:3px 10px;
+  border-radius:20px;background:var(--teal-lt, #E3F7FA);color:var(--teal);
+}
+.meta-chip.gold{background:var(--gold-lt, #FEF6E4);color:var(--gold)}
+.meta-chip.sage{background:#E7F5EE;color:var(--sage)}
+.exam-arrow{color:var(--teal);font-size:1.2rem;font-weight:900}
+
+/* COMING SOON card */
+.exam-card.soon{opacity:.6;pointer-events:none}
+.exam-card.soon .exam-card-top::before{background:linear-gradient(90deg,var(--gray),var(--gray2,#96AABA))}
+.soon-badge{
+  display:inline-block;background:#F0E9FA;color:var(--plum,#572B8C);
+  font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:20px;
+}
+
+/* FOOTER */
+footer{
+  background:var(--navy);color:rgba(255,255,255,.4);
+  text-align:center;padding:20px;font-size:.78rem;
+}
+
+@media(max-width:600px){
+  .exams-grid{grid-template-columns:1fr}
+  .hero{padding:44px 16px 36px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="dot"></div>
+    المدرسة العليا للتربية والتكوين
+  </div>
+  <div class="nav-year">السنة الدراسية 2024–2025</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">منصة التقويم المستمر</div>
+  <h1>التقويمات المستمرة<br>لمجزوءات التكوين</h1>
+  <p>اختر التقويم المطلوب وأجب على الأسئلة — ستصل نتائجك مباشرة للأستاذ</p>
+</div>
+
+<div class="grid-wrap">
+  <div class="section-label">📋 التقويمات المتاحة</div>
+
+  <div class="exams-grid">
+
+    <!-- Exam 1 -->
+    <a href="exam-1/index.html" class="exam-card">
+      <div class="exam-card-top">
+        <div class="exam-num">التقويم الأول</div>
+        <h2>أخلاقيات مهنة التعليم</h2>
+        <p>المفاهيم الأساسية، المرجعيات الأربعة، وتطبيقات الأخلاق في الوسط المدرسي.</p>
+      </div>
+      <div class="exam-card-meta">
+        <div class="meta-chips">
+          <span class="meta-chip">20 سؤالاً</span>
+          <span class="meta-chip gold">4 أنواع</span>
+          <span class="meta-chip sage">⚡ تصحيح فوري</span>
+        </div>
+        <span class="exam-arrow">←</span>
+      </div>
+    </a>
+
+    <!-- Exam 2 -->
+    <a href="exam-2/index.html" class="exam-card">
+      <div class="exam-card-top">
+        <div class="exam-num">التقويم الثاني</div>
+        <h2>مجزوءة التعلم والتعليم</h2>
+        <p>نظريات التعلم، أساليب التدريس، وتقنيات التقويم التربوي.</p>
+      </div>
+      <div class="exam-card-meta">
+        <div class="meta-chips">
+          <span class="meta-chip">20 سؤالاً</span>
+          <span class="meta-chip gold">4 أنواع</span>
+          <span class="meta-chip sage">⚡ تصحيح فوري</span>
+        </div>
+        <span class="exam-arrow">←</span>
+      </div>
+    </a>
+
+    <!-- Placeholder for future exams -->
+    <div class="exam-card soon">
+      <div class="exam-card-top">
+        <div class="exam-num">التقويم الثالث</div>
+        <h2>مجزوءة قيد الإعداد</h2>
+        <p>سيتم إضافة هذا التقويم قريباً من قِبَل الأستاذ.</p>
+      </div>
+      <div class="exam-card-meta">
+        <div class="meta-chips">
+          <span class="soon-badge">🕐 قريباً</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  المدرسة العليا للتربية والتكوين &nbsp;|&nbsp; جميع الحقوق محفوظة 2025
+</footer>
+
+</body>
+</html>
