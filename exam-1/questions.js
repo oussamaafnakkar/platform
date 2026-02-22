@@ -13,7 +13,7 @@ const EXAM_CONFIG = {
   institution: "المدرسة العليا للتربية والتكوين",
   year:        "2024–2025",
   password:    "prof2024",          // ← كلمة مرور لوحة التحكم
-  sheetURL:    "YOUR_GOOGLE_SCRIPT_URL_HERE",  // ← ضع رابط Apps Script هنا
+  sheetURL:    "https://script.google.com/macros/s/AKfycbxJXj-DbD3B662GTnayc8ZBN1zOD2eXzx1muTlypiqQArM5d1ADUqC8xpBTboiSpmIT/exec",  // ← ضع رابط Apps Script هنا
 };
 
 const QUESTIONS = [
